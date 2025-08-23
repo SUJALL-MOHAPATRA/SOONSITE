@@ -4,20 +4,19 @@ import json
 import os
 
 app = Flask(__name__)
-app.secret_key = 'super_secret_key'  # <-- Needed for session
+app.secret_key = os.getenv("FLASK_SECRET_KEY", "fallback_secret")  # <-- Use env var instead of hardcoding
 app.config['SESSION_PERMANENT'] = False
 
 DATA_FILE = 'data.json'
 SITE_NAME = 'SOONSITE'
 
-# Data loading from JSON data file
+# ---------------- Data Helpers ----------------
 def load_data():
     if not os.path.exists(DATA_FILE):
         return []
     with open(DATA_FILE, 'r') as f:
         return json.load(f)
 
-# Data saving to JSON data file
 def save_data(data):
     with open(DATA_FILE, 'w') as f:
         json.dump(data, f, indent=4)
@@ -35,13 +34,13 @@ def save_emails(emails):
     with open(EMAILS_FILE, 'w') as f:
         json.dump(emails, f, indent=4)
 
-# --------- AUTH ROUTES ---------
+# ---------------- AUTH ROUTES ----------------
 @app.route('/login', methods=['GET', 'POST'])
 def login():
     if request.method == 'POST':
         username = request.form['username']
         password = request.form['password']
-        if username == 'TERMIN8R' and password == 'Avenger24680':   # hardcoded login
+        if username == 'TERMIN8R' and password == 'Avenger24680':
             session['logged_in'] = True
             return redirect(url_for('index'))
         else:
@@ -54,23 +53,19 @@ def logout():
     session.clear()
     return redirect(url_for('index'))
 
-# --------- MAIN PAGES ---------
+# ---------------- MAIN PAGES ----------------
 @app.route('/')
 def index():
     data = load_data()
     today = datetime.today().date()
-    # Filtering past releases
     upcoming = [item for item in data if datetime.strptime(item['release_date'], "%Y-%m-%d").date() >= today]
-    # Sorting by release date
     upcoming.sort(key=lambda x: datetime.strptime(x['release_date'], "%Y-%m-%d").date())
 
-    # Format date for display
     for item in upcoming:
         dt = datetime.strptime(item['release_date'], "%Y-%m-%d")
-        item['formatted_date'] = dt.strftime("%d %B %Y")  # 2-digit day, full month, year
+        item['formatted_date'] = dt.strftime("%d %B %Y")
 
-    save_data(upcoming)  #Filtered data saved
-
+    save_data(upcoming)
     return render_template('index.html', items=upcoming, site_name=SITE_NAME)
 
 @app.route('/add', methods=['GET', 'POST'])
@@ -124,7 +119,6 @@ def change(i):
         return redirect(url_for('login'))
 
     items = load_data()
-
     if request.method == 'POST':
         title = request.form.get('title')
         item_type = request.form.get('type')
@@ -177,6 +171,3 @@ def delete_email(email):
     emails = [e for e in emails if e != email]
     save_emails(emails)
     return redirect(url_for('manage_emails'))
-
-if __name__ == '__main__':
-    app.run(debug=True)
