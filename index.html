@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SOONSITE</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+</head>
+<body>
+    <div class="page-container">
+
+        <div class="auth-email-container">
+            {% if session.get('logged_in') %}
+                <a href="{{ url_for('logout') }}" class="btn-auth">Logout</a>
+            {% else %}
+                <a href="{{ url_for('login') }}" class="btn-auth">Login</a>
+            {% endif %}
+            <a class="btn-email" href="{{ url_for('manage_emails') }}">📧 Recipient Emails</a>
+        </div>
+
+        <!-- Heading in center -->
+        <h1>SOONSITE</h1>
+        <h2 class="upcoming-title">Upcoming Releases</h2>
+
+        <!-- Flex container for left list and right add button -->
+        <div class="content-layout">
+
+            <!-- Left side: Releases -->
+            <div class="release-list">
+                <!-- Scrollable container only for the releases -->
+                <div class="releases-container">
+                    {% for item in items %}
+                    <div class="release-bar">
+                        <button class="arrow-button" onclick="toggleDropdown('dropdown{{ loop.index }}'); event.stopPropagation();">&#9660;</button>
+                        <div class="release-text">{{ item.title }} | {{ item.type }} | {{ item.formatted_date }}</div>
+                        <div class="release-buttons">
+                            <a href="/change/{{ loop.index0 }}" style="text-decoration: none;">
+                                <button type="button" class="edit-btn">
+                                    <i class="fa-solid fa-pen"></i>
+                                </button>
+                            </a>
+                            <form action="/delete/{{ loop.index0 }}" method="POST" class="delete-form">
+                                <button type="submit" class="delete-btn">
+                                    <i class="fa-solid fa-trash"></i>
+                                </button>
+                            </form>
+                        </div>
+                    </div>
+                    <div id="dropdown{{ loop.index }}" class="dropdown-content">
+                        <div class="links">
+                            {% if item.links %}
+                                {% for link in item.links %}
+                                    <a href="{{ link.url }}" target="_blank">{{ link.text }}</a>
+                                {% endfor %}
+                            {% else %}
+                                <em>No links provided.</em>
+                            {% endif %}
+                        </div>
+                    </div>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Right side: Add New Release -->
+    <div class="add-release-btn">
+        <a class="add-link" href="{{ url_for('add') }}">+ Add New Release</a>
+    </div>
+
+    <script>
+        function toggleDropdown(id) {
+            const dropdown = document.getElementById(id);
+            const arrowBtn = event.currentTarget;
+
+            if (dropdown.style.display === 'block') {
+                dropdown.style.display = 'none';
+                arrowBtn.innerHTML = '&#9660;';
+            } else {
+                dropdown.style.display = 'block';
+                arrowBtn.innerHTML = '&#9650;';
+            }
+        }
+    </script>
+</body>
+</html>
