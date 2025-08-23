@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SOONSITE - Edit Release</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <div class="container">
+        <h1>SOONSITE - Edit Release</h1>
+        <form method="post" class="edit-box">
+            <label>
+                <input type="text" name="title" placeholder="Title" value="{{ item.title }}" required>
+            </label>
+            <label>
+                <input type="text" name="type" placeholder="Type" value="{{ item.type }}" required>
+            </label>
+            <label>
+                <input type="date" name="release_date" value="{{ item.release_date }}" required>
+            </label>
+
+            <div id="linkContainer">
+                {% if item.links %}
+                    {% for link in item.links %}
+                        <div class="link-group">
+                            <input type="text" name="link_text[]" placeholder="Link Text" value="{{ link.text }}">
+                            <input type="url" name="link_url[]" placeholder="Link URL" value="{{ link.url }}">
+                        </div>
+                    {% endfor %}
+                {% else %}
+                    <div class="link-group">
+                        <input type="text" name="link_text[]" placeholder="Link Text">
+                        <input type="url" name="link_url[]" placeholder="Link URL">
+                    </div>
+                {% endif %}
+            </div>
+            <button type="button" class="add-link-btn" onclick="addLinkField()">+ Add Link</button>
+            <button type="submit" class="blue-btn">Update</button>
+            <style>
+                .blue-btn {
+                background-color: cyan;
+                color: black;
+                border: none;
+                padding: 10px 20px;
+                cursor: pointer;
+                }
+            </style>
+        </form>
+    </div>
+
+
+
+    <script>
+        function addLinkField() {
+            const container = document.getElementById('linkContainer');
+            const group = document.createElement('div');
+            group.className = 'link-group';
+            group.innerHTML = `
+                <input type="text" name="link_text[]" placeholder="Link Text">
+                <input type="url" name="link_url[]" placeholder="Link URL">
+            `;
+            container.appendChild(group);
+        }
+    </script>
+</body>
+</html>
