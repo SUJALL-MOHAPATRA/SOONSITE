@@ -1,0 +1,62 @@
+[
+    {
+        "title": "Marvel Zombies",
+        "type": "TV Show",
+        "release_date": "2025-09-24",
+        "links": [],
+        "formatted_date": "24 September 2025"
+    },
+    {
+        "title": "Stranger Things Season 5",
+        "type": "TV Show",
+        "release_date": "2025-11-26",
+        "links": [
+            {
+                "text": "TEASER",
+                "url": "https://youtu.be/iKZyYdwS3Wg?si=WEP4CmLlGvsJFoZe"
+            }
+        ],
+        "formatted_date": "26 November 2025",
+        "notified": false
+    },
+    {
+        "title": "SUPERGIRL",
+        "type": "Movie",
+        "release_date": "2026-06-26",
+        "links": [],
+        "formatted_date": "26 June 2026",
+        "notified": false
+    },
+    {
+        "title": "Spider-Man: Brand New Day",
+        "type": "Movie",
+        "release_date": "2026-07-31",
+        "links": [],
+        "formatted_date": "31 July 2026",
+        "notified": false
+    },
+    {
+        "title": "Clayface",
+        "type": "Movie",
+        "release_date": "2026-09-11",
+        "links": [],
+        "formatted_date": "11 September 2026",
+        "notified": false
+    },
+    {
+        "title": "Avengers: Doomsday",
+        "type": "Movie",
+        "release_date": "2026-12-18",
+        "links": [],
+        "formatted_date": "18 December 2026",
+        "notified": false
+    },
+    {
+        "title": "Avengers: Secret Wars ",
+        "type": "Movie",
+        "release_date": "2027-12-21",
+        "links": [],
+        "formatted_date": "21 December 2027",
+        "notified": false
+    }
+]
