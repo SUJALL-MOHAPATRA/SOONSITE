@@ -5,15 +5,12 @@ from datetime import datetime
 import json
 import os
 
-# Sender email and app password
 SENDER_EMAIL = os.getenv("SENDER_EMAIL")
 SENDER_PASSWORD = os.getenv("SENDER_PASSWORD")
 
-# Data files
 DATA_FILE = "data.json"
 EMAILS_FILE = "emails.json"
 
-# ---------------- Load/Save Functions ----------------
 def load_data():
     if not os.path.exists(DATA_FILE):
         with open(DATA_FILE, 'w') as f:
@@ -32,7 +29,6 @@ def load_emails():
     with open(EMAILS_FILE, 'r') as f:
         return json.load(f)
 
-# ---------------- Email Sending ----------------
 def send_email(subject, body):
     from_addr = SENDER_EMAIL
     recipients = load_emails()
@@ -41,23 +37,20 @@ def send_email(subject, body):
         print("No recipients found in emails.json.")
         return
 
-    # Create email
     msg = MIMEMultipart()
     msg['From'] = from_addr
-    msg['To'] = "Undisclosed Recipients"  # Hide actual emails in 'To'
+    msg['To'] = "Undisclosed Recipients"
     msg['Subject'] = subject
     msg.attach(MIMEText(body, 'plain'))
 
     try:
         with smtplib.SMTP_SSL("smtp.gmail.com", 465) as server:
             server.login(SENDER_EMAIL, SENDER_PASSWORD)
-            # Send email with all recipients in BCC
             server.sendmail(from_addr, recipients, msg.as_string())
         print(f"Email sent to {len(recipients)} recipient(s).")
     except Exception as e:
         print(f"Error sending email: {e}")
 
-# ---------------- Check & Send Reminder ----------------
 def check_and_send():
     data = load_data()
     today = datetime.today().date()
@@ -67,9 +60,8 @@ def check_and_send():
         release_date = datetime.strptime(item["release_date"], "%Y-%m-%d").date()
         days_left = (release_date - today).days
 
-        # if days_left == 10 and not item.get("notified", False):
         if not item.get("notified", False):
-            subject = f"Reminder: '{item['title']}' is releasing in 10 days!"
+            subject = f"Reminder: '{item['title']}' is releasing soon!"
             body = (
                 f"Don't forget!\n\n"
                 f"Title: {item['title']}\n"
@@ -86,7 +78,5 @@ def check_and_send():
     if changed:
         save_data(data)
 
-# ---------------- Main ----------------
 if __name__ == "__main__":
     check_and_send()
-
