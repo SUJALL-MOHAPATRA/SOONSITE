@@ -6,8 +6,8 @@ import json
 import os
 
 # Sender email and app password
-SENDER_EMAIL = "sujallmohapatra2016@gmail.com"
-SENDER_PASSWORD = "fimv zkrf wdix ygwj"
+SENDER_EMAIL = os.getenv("SENDER_EMAIL")
+SENDER_PASSWORD = os.getenv("SENDER_PASSWORD")
 
 # Data files
 DATA_FILE = "data.json"
@@ -89,3 +89,4 @@ def check_and_send():
 # ---------------- Main ----------------
 if __name__ == "__main__":
     check_and_send()
+
