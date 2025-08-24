@@ -171,3 +171,6 @@ def delete_email(email):
     emails = [e for e in emails if e != email]
     save_emails(emails)
     return redirect(url_for('manage_emails'))
+
+if __name__ == '__main__':
+    app.run()
