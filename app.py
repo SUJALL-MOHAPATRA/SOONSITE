@@ -43,7 +43,11 @@ def login():
     if request.method == 'POST':
         username = request.form['username']
         password = request.form['password']
-        if username == 'TERMIN8R' and password == 'Avenger24680':   # hardcoded login
+        user_name = os.getenv("USER_NAME")
+        user_pass = os.getenv("USER_PASS")
+        if not user_name or not user_pass:
+            return "Server misconfigured: credentials not set", 500
+        if username == user_name and password == user_pass:   # hardcoded login
             session['logged_in'] = True
             return redirect(url_for('index'))
         else:
@@ -188,4 +192,5 @@ if __name__ == '__main__':
     # Start Flask app
     port = int(os.environ.get('PORT', 5000))
     app.run(host='0.0.0.0', port=port)
+
 
