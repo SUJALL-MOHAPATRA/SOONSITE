@@ -6,7 +6,7 @@ from scheduler import run_scheduler
 import threading
 
 app = Flask(__name__)
-app.secret_key = 'super_secret_key'  # <-- Needed for session
+app.secret_key = os.getenv("FLASK_SECRET_KEY", "fallback_secret")
 app.config['SESSION_PERMANENT'] = False
 
 DATA_FILE = 'data.json'
@@ -188,3 +188,4 @@ if __name__ == '__main__':
     # Start Flask app
     port = int(os.environ.get('PORT', 5000))
     app.run(host='0.0.0.0', port=port)
+
