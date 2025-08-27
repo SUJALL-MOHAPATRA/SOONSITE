@@ -4,7 +4,7 @@
         "type": "TV Show",
         "release_date": "2025-09-24",
         "links": [],
-        "formatted_date": "24 September 2025"
+        "formatted_date": "24 September 2025",
         "notified": false
     },
     {
@@ -62,3 +62,4 @@
     }
 
 ]
+
