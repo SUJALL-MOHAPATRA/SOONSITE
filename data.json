@@ -5,6 +5,7 @@
         "release_date": "2025-09-24",
         "links": [],
         "formatted_date": "24 September 2025"
+        "notified": false
     },
     {
         "title": "Stranger Things Season 5",
@@ -59,4 +60,5 @@
         "formatted_date": "21 December 2027",
         "notified": false
     }
+
 ]
