@@ -7,14 +7,11 @@ from psycopg2.extras import RealDictCursor
 import os
 
 # ---------------- Database Config ----------------
+DATABASE_URL = os.environ.get("DATABASE_URL")
+
 def get_db_connection():
-    return psycopg2.connect(
-        dbname=os.environ.get("DB_NAME"),
-        user=os.environ.get("DB_USER"),
-        password=os.environ.get("DB_PASSWORD"),
-        host=os.environ.get("DB_HOST"),
-        port=os.environ.get("DB_PORT)
-    )
+    conn = psycopg2.connect(DATABASE_URL, cursor_factory=RealDictCursor)
+    return conn
 # ---------------- Email Config ----------------
 SENDER_EMAIL = os.environ.get("SENDER_EMAIL")
 SENDER_PASSWORD = os.environ.get("SENDER_PASSWORD")
@@ -133,3 +130,4 @@ def check_and_send():
 # ---------------- Main ----------------
 if __name__ == "__main__":
     check_and_send()
+
