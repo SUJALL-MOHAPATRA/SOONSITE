@@ -8,50 +8,63 @@
 <body>
     <div class="container">
         <h1>SOONSITE - Add New Release</h1>
-        <form method="post">
-            <label>Title: <input type="text" name="title" required></label>
+        <form method="post" class="edit-box">
+            <label>Title:
+                <input type="text" name="title" placeholder="Title" required>
+            </label>
             <label>Type:
                 <select name="type">
                     <option value="Movie">Movie</option>
                     <option value="TV Show">TV Show</option>
                 </select>
             </label>
-            <label>Release Date: <input type="date" name="release_date" required></label>
+            <label>Release Date:
+                <input type="date" name="release_date" required>
+            </label>
 
-            <div id="links-container">
+            <div id="linkContainer">
                 <div class="link-group">
-                    <input type="text" name="link_text[]" placeholder="Link Text" class="link-input">
-                    <input type="url" name="link_url[]" placeholder="Link URL" class="link-input">
+                    <label>
+                        <input type="text" name="link_text[]" placeholder="Link Text">
+                    </label>
+                    <label>
+                        <input type="url" name="link_url[]" placeholder="Link URL">
+                    </label>
                 </div>
             </div>
 
-            <button type="button" onclick="addLink()" class="add-link-btn">+ Add Link</button>
+            <button type="button" class="add-link-btn" onclick="addLinkField()">+ Add Link</button>
             <button type="submit" class="blue-btn">Add</button>
+
             <style>
                 .blue-btn {
-                background-color: cyan;
-                color: black;
-                border: none;
-                padding: 10px 20px;
-                cursor: pointer;
+                    background-color: cyan;
+                    color: black;
+                    border: none;
+                    padding: 10px 20px;
+                    cursor: pointer;
                 }
             </style>
         </form>
         <br>
-        <a href="{{ url_for('index') }}">← Back to List</a>
+        <a href="{{ url_for('index') }}">← Back to Releases</a>
     </div>
+
     <script>
-        function addLink() {
-            const container = document.getElementById('links-container');
+        function addLinkField() {
+            const container = document.getElementById('linkContainer');
             const group = document.createElement('div');
             group.className = 'link-group';
             group.innerHTML = `
-                <input type="text" name="link_text[]" placeholder="Link Text" class="link-input">
-                <input type="url" name="link_url[]" placeholder="Link URL" class="link-input">
+                <label>
+                    <input type="text" name="link_text[]" placeholder="Link Text">
+                </label>
+                <label>
+                    <input type="url" name="link_url[]" placeholder="Link URL">
+                </label>
             `;
             container.appendChild(group);
         }
     </script>
-
 </body>
 </html>
