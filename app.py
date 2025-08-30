@@ -10,14 +10,10 @@ app = Flask(__name__)
 app.secret_key = os.environ.get("FLASK_SECRET_KEY", "dev_secret")
 app.config['SESSION_PERMANENT'] = False
 
+DATABASE_URL = os.environ.get("DATABASE_URL")
+
 def get_db_connection():
-    conn = psycopg2.connect(
-        host=os.environ.get("DB_HOST"),
-        database=os.environ.get("DB_NAME"),
-        user=os.environ.get("DB_USER"),
-        password=os.environ.get("DB_PASSWORD"),
-        port=os.environ.get("DB_PORT")
-    )
+    conn = psycopg2.connect(DATABASE_URL, cursor_factory=RealDictCursor)
     return conn
 
 def delete_expired_projects():
@@ -356,3 +352,4 @@ if __name__ == '__main__':
     # Start Flask app
     port = int(os.environ.get('PORT', 5000))
     app.run(host='0.0.0.0', port=port)
+
