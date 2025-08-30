@@ -8,7 +8,6 @@
 <body>
     <div class="container">
         <h1>Manage Email Recipients</h1>
-
         {% if emails %}
         <table>
             <tr>
@@ -33,11 +32,9 @@
         <form method="post" class="add-form">
             <label>
                 <input type="email" name="new_email" placeholder="Enter emails to add (Use commas)" multiple required>
-
             </label>
             <button type="submit" class="add-button">Add Email</button>
         </form>
-
         <p><a href="{{ url_for('index') }}">← Back to Releases</a></p>
     </div>
 </body>
