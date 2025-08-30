@@ -8,7 +8,6 @@
 </head>
 <body>
     <div class="page-container">
-
         <div class="auth-email-container">
             {% if session.get('logged_in') %}
                 <a href="{{ url_for('logout') }}" class="btn-auth">Logout</a>
@@ -24,23 +23,26 @@
 
         <!-- Flex container for left list and right add button -->
         <div class="content-layout">
-
             <!-- Left side: Releases -->
             <div class="release-list">
                 <!-- Scrollable container only for the releases -->
                 <div class="releases-container">
                     {% for item in items %}
                     <div class="release-bar">
-                        <button class="arrow-button" onclick="toggleDropdown('dropdown{{ loop.index }}'); event.stopPropagation();">&#9660;</button>
-                        <div class="release-text">{{ item.title }} | {{ item.type }} | {{ item.formatted_date }}</div>
+                        <div class="release-left">
+                            <button class="arrow-button" onclick="toggleDropdown(event, 'dropdown{{ loop.index }}')">
+                                &#9660;
+                            </button>
+                            <div class="release-text">
+                                {{ item.title }} | {{ item.type }} | {{ item.formatted_date }}
+                            </div>
+                        </div>
                         <div class="release-buttons">
-                            <a href="/change/{{ loop.index0 }}" style="text-decoration: none;">
-                                <button type="button" class="edit-btn">
+                            <form action="#" method="POST" class="release-buttons">
+                                <button type="button" class="edit-btn" onclick="window.location.href='/change/{{ item.id }}'">
                                     <i class="fa-solid fa-pen"></i>
                                 </button>
-                            </a>
-                            <form action="/delete/{{ loop.index0 }}" method="POST" class="delete-form">
-                                <button type="submit" class="delete-btn">
+                                <button type="submit" formaction="/delete/{{ item.id }}" class="delete-btn">
                                     <i class="fa-solid fa-trash"></i>
                                 </button>
                             </form>
@@ -48,9 +50,9 @@
                     </div>
                     <div id="dropdown{{ loop.index }}" class="dropdown-content">
                         <div class="links">
-                            {% if item.links %}
+                            {% if item.links and item.links|length > 0 %}
                                 {% for link in item.links %}
-                                    <a href="{{ link.url }}" target="_blank">{{ link.text }}</a>
+                                    <a href="{{ link.link_url }}" target="_blank">{{ link.link_text }}</a>
                                 {% endfor %}
                             {% else %}
                                 <em>No links provided.</em>
@@ -68,7 +70,8 @@
     </div>
 
     <script>
-        function toggleDropdown(id) {
+        function toggleDropdown(event, id) {
+            event.stopPropagation();
             const dropdown = document.getElementById(id);
             const arrowBtn = event.currentTarget;
 
