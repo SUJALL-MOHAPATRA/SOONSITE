@@ -1,7 +1,7 @@
 🎬 SOONSITE – Project Release Reminder
 
-SOONSITE is a Flask-based web application to track and manage upcoming Movies or TV shows and automatically notify recipients as release dates approach.
-It is fully powered by PostgreSQL and now includes a working email notification system via emailer.py.
+    SOONSITE is a Flask-based web application to track and manage upcoming Movies or TV shows and automatically notify recipients as release dates approach.
+    It is fully powered by PostgreSQL and now includes a working email notification system via emailer.py.
 
 ✨ Features
 
