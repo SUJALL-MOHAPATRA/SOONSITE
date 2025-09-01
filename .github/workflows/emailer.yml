@@ -2,8 +2,8 @@ name: Daily Emailer
 
 on:
   schedule:
-    - cron: '30 0 * * *'   # Runs every day at 00:30 UTC (6:00 AM IST)
-  workflow_dispatch:       # Allow manual trigger
+    - cron: '30 12 * * *'    # Runs every day at 00:30 UTC (6:00 AM IST)
+  workflow_dispatch:         # Allow manual trigger
 
 jobs:
   send-emails:
