@@ -115,7 +115,7 @@ def check_and_send():
                 f"Type: {item['type']}\n"
                 f"Release Date: {release_date.strftime('%Y-%m-%d')}\n\n"
                 f"Links:\n" +
-                "\n".join(f"{link['text']}: {link['url']}" for link in item.get("links", []))
+                "\n".join(f"{link['link_text']}: {link['link_url']}" for link in item.get("links", []))
             )
 
             send_email(subject, body)
@@ -130,4 +130,5 @@ def check_and_send():
 # ---------------- Main ----------------
 if __name__ == "__main__":
     check_and_send()
+
 
