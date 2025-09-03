@@ -22,7 +22,7 @@ def load_data():
     cur = conn.cursor(cursor_factory=RealDictCursor)
 
     # Fetch projects
-    cur.execute("SELECT id, title, type, release_date, notified FROM projects ORDER BY release_date;")
+    cur.execute("SELECT id, title, type, release_date, formatted_date, notified FROM projects ORDER BY release_date;")
     projects = cur.fetchall()
 
     # For each project, fetch links
@@ -113,7 +113,7 @@ def check_and_send():
                 f"Don't forget!\n\n"
                 f"Title: {item['title']}\n"
                 f"Type: {item['type']}\n"
-                f"Release Date: {release_date.strftime('%Y-%m-%d')}\n\n"
+                f"Release Date: {item['formatted_date']}\n\n"
                 f"Links:\n" +
                 "\n".join(f"{link['link_text']}: {link['link_url']}" for link in item.get("links", []))
             )
@@ -130,5 +130,6 @@ def check_and_send():
 # ---------------- Main ----------------
 if __name__ == "__main__":
     check_and_send()
+
 
 
