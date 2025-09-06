@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Login - SOONSITE</title>
+    <style>
+        body {
+            background-color: #000;
+            font-family: Arial, sans-serif;
+            color: white;
+            margin: 0;
+            padding: 0;
+        }
+
+        .container {
+            margin: 40px auto;       /* centers horizontally */
+            max-width: 400px;        /* responsive but not too wide */
+            background-color: #1e1e1e;
+            padding: 20px;
+            border-radius: 10px;
+            text-align: left;        /* keep labels/inputs aligned */
+        }
+
+        h1 {
+            text-align: center;
+            margin-bottom: 20px;
+            color: #ffffff;
+        }
+
+        label {
+            display: block;
+            margin: 0.6rem 0;
+        }
+
+        input {
+            padding: 0.6rem;
+            width: 80%;
+            max-width: 18rem;
+            background-color: #1e1e1e;
+            color: #ffffff;
+            border: 1px solid #444;
+            border-radius: 0.3rem;
+        }
+
+        button {
+            margin-top: 0.6rem;
+            background-color: #333;
+            color: #4fc3f7;
+            border: 0.1rem dashed #4fc3f7;
+            padding: 0.4rem 0.8rem;
+            cursor: pointer;
+            border-radius: 5px;
+            font-size: 1rem;
+            width: 100%;
+        }
+
+        button:hover {
+            background-color: #222;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Login</h1>
+        <form method="POST">
+            <label>Username:
+                <input type="text" name="username" required>
+            </label>
+            <label>Password:
+                <input type="password" name="password" required>
+            </label>
+            <button type="submit">Login</button>
+        </form>
+    </div>
+</body>
+</html>
