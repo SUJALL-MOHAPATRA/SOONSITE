@@ -1,6 +1,6 @@
 /* Base styles */
 body {
-    background-color: #060B1A;
+    background-color: #000000;
     color: #ffffff;
     font-family: Arial, sans-serif;
     text-align: center;
@@ -498,3 +498,4 @@ input[type="date"]::-webkit-calendar-picker-indicator {
         max-width: 700px; /* wider email table */
     }
 }
+
