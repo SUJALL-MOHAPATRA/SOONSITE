@@ -261,6 +261,20 @@ button {
     color: black;
 }
 
+/*----------Logo Box----------*/
+.logo-box {
+    position: absolute;   /* stays at the top-left */
+    top: 10px;
+    left: 15px;
+    display: flex;
+    align-items: center;
+}
+
+.logo-box img {
+    height: 50px;   /* adjust as needed */
+    width: auto;
+}
+
 /* ----- add.html + change.html ----- */
 form {
     margin: 40px auto;       /* centers horizontally */
@@ -498,4 +512,5 @@ input[type="date"]::-webkit-calendar-picker-indicator {
         max-width: 700px; /* wider email table */
     }
 }
+
 
