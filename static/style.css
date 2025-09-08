@@ -1,6 +1,11 @@
 /* Base styles */
 body {
     background-color: #000000;
+    background-image: url("background.png"); /* loads from /static/ */
+    background-size: cover;       /* make it fill the screen */
+    background-position: center;  /* center the image */
+    background-repeat: no-repeat; /* prevent tiling */
+    background-attachment: fixed; /* stays still on scroll (optional) */
     color: #ffffff;
     font-family: Arial, sans-serif;
     text-align: center;
@@ -93,7 +98,7 @@ button {
 }
 
 .release-bar {
-    background-color: #1e1e1e;
+    background-color: #0F0F24;
     padding: 0.8rem 1rem;
     margin: 0.5rem auto;
     border-radius: 0.5rem;
@@ -101,11 +106,13 @@ button {
     display: flex;
     justify-content: space-between;
     align-items: center; /* keeps arrow, text, and buttons vertically aligned */
-    min-height: 1rem; /* enforces compact height */
+    min-height: 1rem;    /* enforces compact height */
+    opacity: 0.95;
 }
 
 .release-bar:hover {
-    background-color: #2c2c2c;
+    background-color: #151330;
+    opacity: 0.9;
 }
 
 .release-left {
@@ -160,10 +167,11 @@ button {
 
 .dropdown-content {
     display: none;
-    background-color: #2a2a2a;
+    background-color: #0E0A30;
     padding: 0.8rem;
     margin: -0.3rem auto 1rem;
     border-radius: 0 0 0.5rem 0.5rem;
+    opacity: 0.9;
 }
 
 .links a {
@@ -185,12 +193,13 @@ button {
     position: absolute;
     right: 20px;        /* distance from right edge */
     padding: 0.5rem 1rem;
-    background-color: transparent;
+    background-color: #0E0A30;
     color: white;
     text-decoration: none;
     border: 2px solid cyan;
     border-radius: 4px;
     font-weight: bold;
+    opacity: 0.8;
 }
 
 .add-link:hover {
@@ -210,30 +219,31 @@ button {
 }
 
 .edit-btn {
-    background-color: #4fc3f7;   /* blue */
-    color: black;
-    border: none;
+    background-color: #333D52 !important;
+    color: #42B0FF !important;
+    border: none !important;
     padding: 6px 10px;
     cursor: pointer;
     border-radius: 4px;
 }
 
 .delete-btn {
-    background-color: #d9534f;   /* red */
-    color: white;
-    border: none;
+    background-color: #333D52 !important;
+    color: #F51D1D !important;
+    border: none !important;
     padding: 6px 10px;
     cursor: pointer;
     border-radius: 4px;
 }
 
 .edit-btn:hover {
-    background-color: #0288d1;
-    color: white;
+    background-color: #0F00FF !important;
+    color: white !important;
 }
 
 .delete-btn:hover {
-    background-color: #c9302c;
+    background-color: #B01605 !important;
+    color: white !important;
 }
 
 /* Login/Logout and Email*/
@@ -246,7 +256,7 @@ button {
 }
 
 .btn-auth, .btn-email {
-    background-color: transparent;
+    background-color: #0E0A30;
     color: white;
     padding: 8px 15px;
     text-decoration: none;
@@ -254,6 +264,7 @@ button {
     border-radius: 5px;
     font-weight: bold;
     cursor: pointer;
+    opacity: 0.8;
 }
 
 .btn-auth:hover, .btn-email:hover {
@@ -342,7 +353,7 @@ button.add-link-btn {
 
 /* change.html specific form box */
 form.edit-box {
-    background-color: #1e1e1e;
+    background-color: #0F0F24;
     padding: 1.2rem;
     border-radius: 0.6rem;
     max-width: 20rem;
@@ -376,7 +387,7 @@ th {
     padding: 0.3rem 0.6rem;
     border-bottom: 1px solid #444;
     word-break: break-word;
-    background-color: #1e1e1e;
+    background-color: #0F0F24;
     line-height: 1.2;
 }
 
@@ -433,7 +444,7 @@ tr:hover {
     margin-right: 0.6rem;
     border: none;
     border-radius: 4px;
-    background-color: #1e1e1e;
+    background-color: #0F0F24;
     color: white;
 }
 
@@ -512,5 +523,3 @@ input[type="date"]::-webkit-calendar-picker-indicator {
         max-width: 700px; /* wider email table */
     }
 }
-
-
