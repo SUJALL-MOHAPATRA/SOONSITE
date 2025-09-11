@@ -98,7 +98,7 @@ button {
 }
 
 .release-bar {
-    background-color: #0F0F24;
+    background-color: #0A0D30;
     padding: 0.8rem 1rem;
     margin: 0.5rem auto;
     border-radius: 0.5rem;
@@ -523,3 +523,4 @@ input[type="date"]::-webkit-calendar-picker-indicator {
         max-width: 700px; /* wider email table */
     }
 }
+
